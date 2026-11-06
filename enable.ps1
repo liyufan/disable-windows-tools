@@ -5,7 +5,7 @@ if (Test-Path $RegistryPath) {
     Remove-ItemProperty -Path $RegistryPath -Name $RegistryName -ErrorAction SilentlyContinue
 
     $RegistryKey = Get-Item $RegistryPath
-    if ($RegistryKey.GetValueNames().Count -eq 0 -and $RegistryKey.GetSubKeyNames().Count -eq 0) {
+    if ($RegistryKey.ValueCount + $RegistryKey.SubKeyCount -eq 0) {
         Remove-Item -Path $RegistryPath -Force
     }
 }
@@ -19,14 +19,14 @@ if (Test-Path $RegistryPath) {
     Remove-ItemProperty -Path $RegistryPath -Name $RegistryName -ErrorAction SilentlyContinue
 
     $RegistryKey = Get-Item $RegistryPath
-    if ($RegistryKey.GetValueNames().Count -eq 0 -and $RegistryKey.GetSubKeyNames().Count -eq 0) {
+    if ($RegistryKey.ValueCount + $RegistryKey.SubKeyCount -eq 0) {
         Remove-Item -Path $RegistryPath -Force
     }
 }
 
 if (Test-Path $ParentRegistryPath) {
     $RegistryKey = Get-Item $ParentRegistryPath
-    if ($RegistryKey.GetValueNames().Count -eq 0 -and $RegistryKey.GetSubKeyNames().Count -eq 0) {
+    if ($RegistryKey.ValueCount + $RegistryKey.SubKeyCount -eq 0) {
         Remove-Item -Path $ParentRegistryPath -Force
     }
 }
